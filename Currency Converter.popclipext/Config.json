@@ -1,0 +1,47 @@
+{
+  "name": "Currency Converter",
+  "identifier": "com.poxylizard.popclip.currencyconverter",
+  "description": "Convert fiat amounts, ranges and currency-filled text using the latest available daily exchange rates.",
+  "keywords": "money foreign exchange forex pounds sterling dollars euros yen yuan rates million billion trillion range",
+  "popclipVersion": 5997,
+  "icon": "circle filled £$",
+  "module": "currency.ts",
+  "entitlements": ["network"],
+  "offersMultipleInstances": true,
+  "options": [
+    {
+      "identifier": "targetCurrency",
+      "type": "multiple",
+      "label": "Convert to",
+      "description": "Choose the target currency by its three-letter ISO currency code.",
+      "defaultValue": "GBP",
+      "values": [
+        "AED", "AUD", "BRL", "CAD", "CHF", "CNY", "CZK", "DKK",
+        "EUR", "GBP", "HKD", "IDR", "INR", "JPY", "KRW", "MXN",
+        "MYR", "NOK", "NZD", "PHP", "PLN", "RUB", "SEK", "SGD",
+        "THB", "TWD", "USD", "VND", "ZAR"
+      ],
+      "valueLabels": [
+        "AED", "AUD", "BRL", "CAD", "CHF", "CNY", "CZK", "DKK",
+        "EUR", "GBP", "HKD", "IDR", "INR", "JPY", "KRW", "MXN",
+        "MYR", "NOK", "NZD", "PHP", "PLN", "RUB", "SEK", "SGD",
+        "THB", "TWD", "USD", "VND", "ZAR"
+      ]
+    },
+    {
+      "identifier": "output",
+      "type": "multiple",
+      "label": "Result action",
+      "defaultValue": "display",
+      "values": ["display", "copy", "replace"],
+      "valueLabels": ["Display and Copy", "Copy Only", "Replace Selection"]
+    },
+    {
+      "identifier": "includeDetails",
+      "type": "boolean",
+      "label": "Include rate details",
+      "description": "Append the source amount, exchange rate and rate date to the result.",
+      "defaultValue": false
+    }
+  ]
+}
