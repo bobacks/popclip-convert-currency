@@ -1,5 +1,5 @@
 {
-  "name": "Currency Converter",
+  "name": "Convert Currency",
   "identifier": "com.poxylizard.popclip.currencyconverter",
   "description": "Convert fiat amounts, ranges and currency-filled text using the latest available daily exchange rates.",
   "keywords": "money foreign exchange forex pounds sterling dollars euros yen yuan rates million billion trillion range",

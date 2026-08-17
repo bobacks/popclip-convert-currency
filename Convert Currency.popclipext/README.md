@@ -1,6 +1,8 @@
-# Currency Converter
+# Convert Currency
 
 Convert selected fiat currency amounts using the latest available daily exchange rates.
+
+Created and maintained by Boback Shahsafdari.
 
 Examples include `£25`, `25 GBP`, `GBP 25`, `25 Pounds Sterling`, `1,234.56 USD`, `1.234,56 EUR`, `50ISK`, `¢1000`, and `62,700 円`.
 
