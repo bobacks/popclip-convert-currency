@@ -1,8 +1,26 @@
 # Convert Currency
 
-Convert selected fiat currency amounts using the latest available daily exchange rates.
+Convert individual fiat amounts—or every currency amount in an entire selected sentence—to your chosen currency using the latest available daily exchange rates. All surrounding words and punctuation are preserved.
 
 Created and maintained by Boback Shahsafdari.
+
+## Convert complete selections
+
+Unlike a converter that accepts only one amount, Convert Currency can process every recognised currency value in the selected text at once. It also supports mixed source currencies.
+
+For example:
+
+```text
+Sell $225.60, buy $225.63, with a €50 fee.
+```
+
+When converting to GBP, the result keeps the sentence intact and replaces all three amounts:
+
+```text
+Sell £…, buy £…, with a £… fee.
+```
+
+The converted text is displayed in PopClip and copied to the clipboard, or it can replace the original selection according to the extension's settings.
 
 Examples include `£25`, `25 GBP`, `GBP 25`, `25 Pounds Sterling`, `1,234.56 USD`, `1.234,56 EUR`, `50ISK`, `¢1000`, and `62,700 円`.
 
