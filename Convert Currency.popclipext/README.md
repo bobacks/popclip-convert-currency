@@ -58,7 +58,12 @@ The cent sign and the words `cent` or `cents` default to US cents, so `¢1000` i
 
 GBP results use the unambiguous pound sign without repeating the ISO code—for example, `£25` rather than `£25 GBP`. Currency codes are retained where a displayed symbol may be ambiguous.
 
-Cryptocurrencies, precious metals, and Special Drawing Rights are not supported.
+## Known limitations
+
+- Cryptocurrencies, precious metals, and Special Drawing Rights are not supported.
+- Exchange-rate availability depends on Frankfurter's central-bank data. Frankfurter currently lists KPW but provides no current rate, so conversions to or from KPW are unavailable.
+- Three-letter ISO codes work regardless of language. Translated currency names are limited to the aliases explicitly documented above; use an ISO code when a local-language name is not recognised.
+- Some currency symbols are shared by several currencies and therefore use the documented defaults. Use an explicit ISO code whenever the symbol could be ambiguous.
 
 ## Rates and privacy
 
