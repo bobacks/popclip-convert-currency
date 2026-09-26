@@ -1,7 +1,7 @@
 export interface CurrencyInfo {
   iso_code: string;
   name: string;
-  symbol: string;
+  symbol: string | null;
 }
 
 export interface ParsedAmount {
@@ -165,11 +165,11 @@ function currencyLookup(currencies: CurrencyInfo[]): Map<string, CurrencyInfo> {
   // by the explicit defaults above instead of depending on provider list order.
   const symbolCounts = new Map<string, number>();
   for (const currency of active) {
-    const symbol = currency.symbol.trim();
+    const symbol = (currency.symbol ?? "").trim();
     if (symbol) symbolCounts.set(symbol, (symbolCounts.get(symbol) ?? 0) + 1);
   }
   for (const currency of active) {
-    const symbol = currency.symbol.trim();
+    const symbol = (currency.symbol ?? "").trim();
     if (symbol && symbolCounts.get(symbol) === 1) lookup.set(symbol, currency);
   }
   for (const [symbol, code] of Object.entries(symbolDefaults)) {
@@ -199,11 +199,11 @@ function currencyTokenValues(currencies: CurrencyInfo[]): string[] {
 
   const symbolCounts = new Map<string, number>();
   for (const currency of active) {
-    const symbol = currency.symbol.trim();
+    const symbol = (currency.symbol ?? "").trim();
     if (symbol) symbolCounts.set(symbol, (symbolCounts.get(symbol) ?? 0) + 1);
   }
   for (const currency of active) {
-    const symbol = currency.symbol.trim();
+    const symbol = (currency.symbol ?? "").trim();
     if (symbol && symbolCounts.get(symbol) === 1) tokens.add(symbol);
   }
   for (const [symbol, code] of Object.entries(symbolDefaults)) {
