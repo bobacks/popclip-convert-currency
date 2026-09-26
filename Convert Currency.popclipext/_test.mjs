@@ -26,6 +26,7 @@ const currencies = [
   { iso_code: "TMT", name: "Turkmenistani Manat", symbol: "m" },
   { iso_code: "TOP", name: "Tongan Paʻanga", symbol: "T$" },
   { iso_code: "WST", name: "Samoan Tala", symbol: "T" },
+  { iso_code: "CMD", name: "COMESA Dollar", symbol: null },
 ];
 
 const cases = [
@@ -83,6 +84,7 @@ const cases = [
   ["GBP 4.5m", 4_500_000, "GBP"],
   ["12.5 B/.", 12.5, "PAB"],
   ["12.5 T$", 12.5, "TOP"],
+  ["25 CMD", 25, "CMD"],
 ];
 
 for (const [input, expectedAmount, expectedCode] of cases) {

@@ -1,7 +1,7 @@
 export interface CurrencyInfo {
   iso_code: string;
   name: string;
-  symbol: string;
+  symbol?: string | null;
 }
 
 export interface ParsedAmount {
@@ -143,6 +143,10 @@ function pluralizeName(name: string): string {
   return `${name}s`;
 }
 
+function currencySymbol(currency: CurrencyInfo): string {
+  return typeof currency.symbol === "string" ? currency.symbol.trim() : "";
+}
+
 function currencyLookup(currencies: CurrencyInfo[]): Map<string, CurrencyInfo> {
   const active = currencies.filter((currency) => !NON_FIAT_CODES.has(currency.iso_code));
   const byCode = new Map(active.map((currency) => [currency.iso_code, currency]));
@@ -165,11 +169,11 @@ function currencyLookup(currencies: CurrencyInfo[]): Map<string, CurrencyInfo> {
   // by the explicit defaults above instead of depending on provider list order.
   const symbolCounts = new Map<string, number>();
   for (const currency of active) {
-    const symbol = currency.symbol.trim();
+    const symbol = currencySymbol(currency);
     if (symbol) symbolCounts.set(symbol, (symbolCounts.get(symbol) ?? 0) + 1);
   }
   for (const currency of active) {
-    const symbol = currency.symbol.trim();
+    const symbol = currencySymbol(currency);
     if (symbol && symbolCounts.get(symbol) === 1) lookup.set(symbol, currency);
   }
   for (const [symbol, code] of Object.entries(symbolDefaults)) {
@@ -199,11 +203,11 @@ function currencyTokenValues(currencies: CurrencyInfo[]): string[] {
 
   const symbolCounts = new Map<string, number>();
   for (const currency of active) {
-    const symbol = currency.symbol.trim();
+    const symbol = currencySymbol(currency);
     if (symbol) symbolCounts.set(symbol, (symbolCounts.get(symbol) ?? 0) + 1);
   }
   for (const currency of active) {
-    const symbol = currency.symbol.trim();
+    const symbol = currencySymbol(currency);
     if (symbol && symbolCounts.get(symbol) === 1) tokens.add(symbol);
   }
   for (const [symbol, code] of Object.entries(symbolDefaults)) {

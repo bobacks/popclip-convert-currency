@@ -81,11 +81,11 @@ for (const currency of fiatCurrencies) {
 
 const symbolCounts = new Map();
 for (const currency of fiatCurrencies) {
-  const symbol = currency.symbol.trim();
+  const symbol = typeof currency.symbol === "string" ? currency.symbol.trim() : "";
   if (symbol) symbolCounts.set(symbol, (symbolCounts.get(symbol) ?? 0) + 1);
 }
 for (const currency of fiatCurrencies) {
-  const symbol = currency.symbol.trim();
+  const symbol = typeof currency.symbol === "string" ? currency.symbol.trim() : "";
   if (!symbol || symbolCounts.get(symbol) !== 1) continue;
   for (const input of [`${symbol} 12.5`, `12.5 ${symbol}`]) {
     symbolAssertions += 1;

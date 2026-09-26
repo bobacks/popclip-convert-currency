@@ -61,7 +61,7 @@ GBP results use the unambiguous pound sign without repeating the ISO code—for 
 ## Known limitations
 
 - Cryptocurrencies, precious metals, and Special Drawing Rights are not supported.
-- Exchange-rate availability depends on Frankfurter's central-bank data. Frankfurter currently lists KPW but provides no current rate, so conversions to or from KPW are unavailable.
+- Exchange-rate availability depends on Frankfurter's current central-bank data coverage.
 - Three-letter ISO codes work regardless of language. Translated currency names are limited to the aliases explicitly documented above; use an ISO code when a local-language name is not recognised.
 - Some currency symbols are shared by several currencies and therefore use the documented defaults. Use an explicit ISO code whenever the symbol could be ambiguous.
 
@@ -75,4 +75,5 @@ The selected text is parsed locally and is not transmitted. Requests to Frankfur
 
 ## Changelog
 
+- 2026-09-26: Fixed conversions after the currency provider added an entry without a symbol, and made provider-data validation more resilient.
 - 2026-08-17: Initial release.

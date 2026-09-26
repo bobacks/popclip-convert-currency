@@ -23,6 +23,19 @@ interface RateInfo {
 
 let cachedCurrencies: CurrencyInfo[] | undefined;
 
+function isCurrencyInfo(value: unknown): value is CurrencyInfo {
+  if (!value || typeof value !== "object") return false;
+  const currency = value as Partial<CurrencyInfo>;
+  return (
+    typeof currency.iso_code === "string" &&
+    /^[A-Z]{3}$/u.test(currency.iso_code) &&
+    typeof currency.name === "string" &&
+    (currency.symbol === null ||
+      currency.symbol === undefined ||
+      typeof currency.symbol === "string")
+  );
+}
+
 function formatPlain(amount: number): string {
   return Intl.NumberFormat(undefined, {
     useGrouping: true,
@@ -33,12 +46,15 @@ function formatPlain(amount: number): string {
 async function loadCurrencies(): Promise<CurrencyInfo[]> {
   if (cachedCurrencies) return cachedCurrencies;
 
-  const response = await axios.get<CurrencyInfo[]>(
+  const response = await axios.get<unknown>(
     "https://api.frankfurter.dev/v2/currencies",
   );
-  cachedCurrencies = response.data.filter(
+  if (!Array.isArray(response.data)) throw new Error("Invalid currency data");
+
+  cachedCurrencies = response.data.filter(isCurrencyInfo).filter(
     (currency) => !NON_FIAT_CODES.has(currency.iso_code),
   );
+  if (cachedCurrencies.length === 0) throw new Error("No currency data");
   return cachedCurrencies;
 }
 
@@ -100,9 +116,12 @@ export const action: Action = {
             const response = await axios.get<RateResponse>(
               `https://api.frankfurter.dev/v2/rate/${sourceCode}/${targetCode}`,
             );
+            if (!Number.isFinite(response.data.rate) || response.data.rate <= 0) {
+              throw new Error("Invalid exchange rate");
+            }
             rates.set(sourceCode, {
               rate: response.data.rate,
-              date: response.data.date,
+              date: typeof response.data.date === "string" ? response.data.date : "",
             });
           }),
       );
