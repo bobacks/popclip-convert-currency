@@ -26,6 +26,8 @@ const currencies = [
   { iso_code: "TMT", name: "Turkmenistani Manat", symbol: "m" },
   { iso_code: "TOP", name: "Tongan Paʻanga", symbol: "T$" },
   { iso_code: "WST", name: "Samoan Tala", symbol: "T" },
+  // Frankfurter returns some currencies (e.g. COMESA Dollar) with a null symbol.
+  { iso_code: "CMD", name: "COMESA Dollar", symbol: null },
 ];
 
 const cases = [
