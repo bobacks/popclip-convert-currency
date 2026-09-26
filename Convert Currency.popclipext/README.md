@@ -75,5 +75,5 @@ The selected text is parsed locally and is not transmitted. Requests to Frankfur
 
 ## Changelog
 
-- 2026-09-26: Fixed conversions after the currency provider added an entry without a symbol, and made provider-data validation more resilient.
-- 2026-08-17: Initial release.
+- 2026-09-26 (1.1): Fixed all conversions failing after the currency provider added an entry without a symbol, and made provider-data validation more resilient.
+- 2026-08-17 (1.0): Initial release.
